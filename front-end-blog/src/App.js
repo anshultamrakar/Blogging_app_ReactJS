@@ -10,6 +10,7 @@ import {useState , useEffect} from "react"
 
 
 
+
 function App() {
 
   const [posts , setPosts] = useState([
@@ -73,6 +74,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <Routes>
          <Route path = "/" element = {<Layout search = {search} setSearch = {setSearch}/>}>
           <Route index element = {<Home posts = {searchResult}/>}/>
@@ -84,6 +86,8 @@ function App() {
           <Route path = "*" element = {<Missing/>}/>
          </Route>
       </Routes>
+    
+      
     </div>
   );
 }
