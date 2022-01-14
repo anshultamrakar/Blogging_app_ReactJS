@@ -4,8 +4,9 @@ import NewPost from "./NewPost"
 import PostPage from "./PostPage"
 import Missing from "./Missing";
 import About from "./About"
-import {Route, Routes} from 'react-router-dom'
-import {useState} from "react"
+import {Route, Routes , useNavigate} from 'react-router-dom'
+import { format } from 'date-fns'
+import {useState , useEffect} from "react"
 
 
 
@@ -39,18 +40,45 @@ function App() {
   ])
 
   const [search , setSearch ] = useState("")
-
   const [searchResult , setSearchResult] = useState([]);
+  const [postTitle , setPostTitle] = useState('')
+  const [postBody , setPostBody] = useState('')
+  const navigate = useNavigate();
+
+  useEffect(() => {
+     const filteredResults = posts.filter(post => (post.body).toLowerCase().includes(search.toLowerCase())
+     || (post.title).toLowerCase().includes(search.toLowerCase()))
+     setSearchResult(filteredResults.reverse())
+
+  }, [posts , search])
+
+  const handleDelete = (id) => {
+      const postList = posts.filter(post => post.id !== id)
+      setPosts(postList)
+      navigate('/')
+  }
   
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+    const datetime = format(new Date(), "MMMM dd , yyyy pp")
+    const newPost = {id , title : postTitle , datetime , body : postBody }
+    const allPost = [...posts, newPost]
+    setPosts(allPost)
+    setPostTitle('')
+    setPostBody('')
+    navigate("/")
+
+  }
 
   return (
     <div className="App">
       <Routes>
          <Route path = "/" element = {<Layout search = {search} setSearch = {setSearch}/>}>
-          <Route index element = {<Home posts = {posts}/>}/>
+          <Route index element = {<Home posts = {searchResult}/>}/>
           <Route path = "post">
-            <Route index element = {<NewPost/>}/>
-            <Route path = "id" element = {<PostPage/>}/>
+            <Route index element = {<NewPost handleSubmit = {handleSubmit} postTitle = {postTitle} setPostTitle={setPostTitle}/>} postBody = {postBody} setPostBody = {setPostBody}/>
+            <Route path = "/post/:id" element = {<PostPage posts = {posts}  handleDelete = {handleDelete}/>}/>
           </Route>
           <Route path = "about" element = {<About/>}/>
           <Route path = "*" element = {<Missing/>}/>
