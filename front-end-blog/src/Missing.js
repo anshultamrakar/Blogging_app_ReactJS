@@ -1,6 +1,6 @@
 const Missing = () => {
     return (
-        <main>
+        <main className="Missing">
           <p> This is Missing </p>
         </main>
     )

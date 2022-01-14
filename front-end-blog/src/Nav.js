@@ -1,7 +1,21 @@
-const Nav = () => {
+import { Link } from "react-router-dom"
+const Nav = ({search , setSearch}) => {
     return (
         <nav className="Nav">
-            <h2> This is Nav </h2>
+           <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
+               <label>Search</label>
+               <input
+               type = "text"
+               placeholder="Search"
+               value = {search}
+               onChange={(e) => setSearch(e.target.value)}
+               />
+               <ul>
+           <li><Link to = "">Home</Link></li>
+           <li><Link to = "post">Post</Link></li>
+           <li><Link to = "about">About</Link></li>
+           </ul>
+           </form>
         </nav>
     )
 }

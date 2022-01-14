@@ -1,6 +1,6 @@
 const PostPage = () => {
     return (
-        <main>
+        <main className="PostPage">
             <p> This is Post Page</p>
         </main>
     )

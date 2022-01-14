@@ -1,6 +1,6 @@
 const NewPost = () => {
     return (
-        <main>
+        <main className="NewPost">
             <p> This is NewPost </p>
         </main>
     )
