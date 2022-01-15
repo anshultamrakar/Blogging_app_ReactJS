@@ -9,8 +9,8 @@ const EditPost = ({posts, editTitle , editBody , handleEdit , setEditTitle , set
 
     useEffect(() => {
        if(post){
-         setEditTitle('')
-         setEditBody('')
+         setEditTitle(post.title)
+         setEditBody(post.body)
        }
     },[posts,setEditTitle, setEditBody])
     
@@ -20,17 +20,17 @@ const EditPost = ({posts, editTitle , editBody , handleEdit , setEditTitle , set
           <>
          <h2>Edit Post</h2>
         <form className="newPostForm" onSubmit={(e) => e.preventDefault()}>
-          <label htmlFor="editTitle">Title:</label>
+          <label htmlFor="postTitle">Title:</label>
           <input
-            id="editTitle"
+            id="postTitle"
             type="text"
             required
             value={editTitle}
             onChange={(e) => setEditTitle(e.target.value)}
           />
-          <label htmlFor="editBody">Post:</label>
+          <label htmlFor="postBody">Post:</label>
           <textarea
-            id="editBody"
+            id="postBody"
             required
             value={editBody}
             onChange={(e) => setEditBody(e.target.value)}
@@ -40,7 +40,7 @@ const EditPost = ({posts, editTitle , editBody , handleEdit , setEditTitle , set
         </>
           }  
           {
-              ! editTitle &&  
+              !editTitle &&  
               <>
                <h2>Post Not Found</h2>
                         <p>Well, that's disappointing.</p>
