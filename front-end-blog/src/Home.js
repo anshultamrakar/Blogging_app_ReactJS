@@ -1,10 +1,14 @@
 import Feed from './Feed';
 
-const Home = ({ posts }) => {
+import {useContext } from "react"
+import DataContext from './Context/DataContext'
+
+const Home = () => {
+    const {searchResult} = useContext(DataContext)
     return (
         <main className="Home">
-            {posts.length ? (
-                <Feed posts={posts} />
+            {searchResult.length ? (
+                <Feed posts={searchResult} />
             ) : (
                 <p style={{ marginTop: "2rem" }}>
                     No posts to display.
