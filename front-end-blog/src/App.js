@@ -12,7 +12,6 @@ import { DataProvider } from "./Context/DataContext"
 
 
 function App() {
-
   return (
     <div className="App">
    <DataProvider>
