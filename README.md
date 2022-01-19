@@ -1,4 +1,4 @@
-# Blog_Application_React-JS
+# Blog_Application_React_JS
 # Welcome 👋 to [Blog_Application App](https://laughing-yalow-6eaf97.netlify.app/)
 * It include feature such as :
 * It is a multipage application made with the help of React Router version 6
